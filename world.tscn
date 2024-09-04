@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjgld7sqn32on"]
+[gd_scene load_steps=12 format=3 uid="uid://bjgld7sqn32on"]
 
 [ext_resource type="PackedScene" uid="uid://ces74owpx2hkg" path="res://player/player.tscn" id="1_01fbr"]
-[ext_resource type="Script" path="res://scripts/camera_pivot.gd" id="1_o0umj"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="3_4hpcs"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_b46u1"]
@@ -38,9 +37,7 @@ size = Vector3(10, 0.981445, 9.29102)
 
 [node name="World" type="Node3D"]
 
-[node name="camera_pivot" type="Node3D" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("1_o0umj")
-target = NodePath("../player")
+[node name="camera_pivot" type="Node3D" parent="."]
 
 [node name="Camera" type="Camera3D" parent="camera_pivot"]
 transform = Transform3D(1, 0, 0, 0, 0.659543, 0.751667, 0, -0.751667, 0.659543, 0, 5.51828, 5.30491)
