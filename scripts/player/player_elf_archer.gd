@@ -6,7 +6,7 @@ extends CharacterBody3D
 
 @onready var player_body = $Armature
 @onready var anim = $AnimationPlayer
-
+@onready var camera = $"../cam_gimbal"
 var angular_speed = 10
 
 var movement
@@ -17,8 +17,9 @@ func _physics_process(delta: float) -> void:
 
 func move(delta):
 	movement = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	direction = (transform.basis * Vector3(movement.x, 0, movement.y)).normalized()
-
+	#direction = (transform.basis * Vector3(movement.x, 0, movement.y)).normalized()
+	direction = Vector3(movement.x, 0, movement.y).rotated(Vector3.UP, camera.rotation.y).normalized()
+	
 	if direction:
 		anim.play("Armature|Armature|Walking")
 		velocity.x = direction.x * speed
