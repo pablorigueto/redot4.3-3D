@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://cv2ugtv255tw5"]
+
+[ext_resource type="PackedScene" uid="uid://e3soc6q1hxkr" path="res://models/Player/player-elf-archer.tscn" id="1_ihs0k"]
+[ext_resource type="Script" path="res://scripts/cam_gimbal/cam_gimbal.gd" id="2_wu5v2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gqnc5"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_hb2wb"]
+sky_material = SubResource("ProceduralSkyMaterial_gqnc5")
+
+[sub_resource type="Environment" id="Environment_1ykjk"]
+background_mode = 2
+sky = SubResource("Sky_hb2wb")
+tonemap_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l4ygl"]
+size = Vector2(200, 200)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_uuocy"]
+albedo_color = Color(1, 0.447059, 0.211765, 1)
+albedo_texture_msdf = true
+
+[node name="world_1" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1ykjk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player-elf-archer" parent="." instance=ExtResource("1_ihs0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00665164, 0)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+use_collision = true
+mesh = SubResource("PlaneMesh_l4ygl")
+material = SubResource("ORMMaterial3D_uuocy")
+
+[node name="cam_gimbal" type="Node3D" parent="."]
+script = ExtResource("2_wu5v2")
+
+[node name="Camera3D" type="Camera3D" parent="cam_gimbal"]
+transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 0, 0)
