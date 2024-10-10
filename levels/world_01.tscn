@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cv2ugtv255tw5"]
 
 [ext_resource type="Script" path="res://scripts/cam_gimbal/cam_gimbal.gd" id="2_wu5v2"]
-[ext_resource type="PackedScene" uid="uid://drypxrntkh148" path="res://models/Guardian/Guardian.tscn" id="3_8lo8g"]
+[ext_resource type="PackedScene" uid="uid://dpvfeshkxjhtb" path="res://models/Guardian/Guardian.tscn" id="3_8lo8g"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gqnc5"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
