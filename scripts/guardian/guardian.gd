@@ -26,7 +26,7 @@ func move(delta):
 		velocity.z = direction.z * speed
 		player_body.rotation.y = lerp_angle(player_body.rotation.y, atan2(velocity.x, velocity.z), delta * angular_speed)
 	else:
-		anim.play("Catwalk Idle To Twist R")
+		anim.play("Idle Regular")
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 		

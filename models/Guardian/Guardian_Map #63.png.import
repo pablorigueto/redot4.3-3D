@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd3i54s3et1ua"
+uid="uid://ds1vmpdwjtdc0"
 path.s3tc="res://.godot/imported/Guardian_Map #63.png-ac82ffed89ea736907fd3c9dc53739d9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
@@ -27,8 +27,8 @@ compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://models/Guardian/Guardian_Map #63.png"
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

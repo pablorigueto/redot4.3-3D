@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cv2ugtv255tw5"]
 
 [ext_resource type="Script" path="res://scripts/cam_gimbal/cam_gimbal.gd" id="2_wu5v2"]
-[ext_resource type="PackedScene" uid="uid://bp0ro7kb3x2ck" path="res://models/Guardian/Guardian.tscn" id="3_8lo8g"]
+[ext_resource type="PackedScene" uid="uid://drypxrntkh148" path="res://models/Guardian/Guardian.tscn" id="3_8lo8g"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gqnc5"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -42,4 +42,4 @@ material = SubResource("ORMMaterial3D_uuocy")
 script = ExtResource("2_wu5v2")
 
 [node name="Camera3D" type="Camera3D" parent="cam_gimbal"]
-transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 2.43861, 4.50265)
+transform = Transform3D(1, 1.11022e-16, -1.49012e-08, 2.0808e-09, 0.990202, 0.13964, 1.47552e-08, -0.13964, 0.990202, 0, 2.75536, 4.93629)
