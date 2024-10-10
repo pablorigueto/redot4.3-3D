@@ -3,7 +3,7 @@ extends CharacterBody3D
 @export var speed := 4.0
 @export var gravity := 4.0
 @export var jump_force := 3.5
-@export var jump_animation_speed := 0.7  # Adjust this value to control jump animation speed
+@export var run_animation_speed := 2
 
 @onready var player_body = $Armature
 @onready var anim = $AnimationPlayer
@@ -28,9 +28,17 @@ func move(delta):
 
 		# Handle movement and play appropriate animations
 		if direction:
-			anim.play("Run")
-			velocity.x = direction.x * speed
-			velocity.z = direction.z * speed
+			# Check if the Shift key is pressed
+			if Input.is_action_pressed("ui_shift"):  # Ensure you set this action in the Input Map
+				#anim.play("Run")  # Play the running animation
+				anim.play("Run", -1, run_animation_speed)
+				velocity.x = direction.x * speed * 3  # Increase speed for running
+				velocity.z = direction.z * speed * 3
+			else:
+				anim.play("Walk")  # Play the walking animation
+				velocity.x = direction.x * speed
+				velocity.z = direction.z * speed
+
 			player_body.rotation.y = lerp_angle(player_body.rotation.y, atan2(velocity.x, velocity.z), delta * angular_speed)
 		else:
 			anim.play("Idle Regular")
