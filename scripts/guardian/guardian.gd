@@ -29,5 +29,11 @@ func move(delta):
 		anim.play("Idle Regular")
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
-		
+
+	if Input.is_action_just_pressed("ui_accept"):
+		velocity.y = jump_force
+		#anim.play("Sword And Shield Jump")
+
+	velocity.y -= gravity * delta
+
 	move_and_slide()
