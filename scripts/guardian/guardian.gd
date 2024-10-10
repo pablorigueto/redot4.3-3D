@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @export var speed := 4.0
 @export var gravity := 4.0
-@export var jump_force := 5.0
+@export var jump_force := 3.5
 @export var jump_animation_speed := 0.7  # Adjust this value to control jump animation speed
 
 @onready var player_body = $Armature
@@ -28,7 +28,7 @@ func move(delta):
 
 		# Handle movement and play appropriate animations
 		if direction:
-			anim.play("Walk")
+			anim.play("Run")
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 			player_body.rotation.y = lerp_angle(player_body.rotation.y, atan2(velocity.x, velocity.z), delta * angular_speed)
