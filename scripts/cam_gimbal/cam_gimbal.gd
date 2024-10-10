@@ -4,6 +4,12 @@ extends Node3D
 var base_position = Vector3()
 var base_rotation = Vector3()
 
+# Zoom parameters
+var zoom_speed: float = 5.0
+var min_distance: float = -1.8
+var max_distance: float = 5.0
+var current_distance: float = 1.0
+
 func _ready() -> void:
 	base_position = position
 	base_rotation = rotation
@@ -29,5 +35,11 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("rotate_cam"):
 		rotation_degrees.y += 90
 
-		
-		
+	# Handle zooming
+	if Input.is_action_pressed('zoom_in'):
+		current_distance = clamp(current_distance - zoom_speed * delta, min_distance, max_distance)
+	elif Input.is_action_pressed('zoom_out'):
+		current_distance = clamp(current_distance + zoom_speed * delta, min_distance, max_distance)
+
+	# Update position based on zoom
+	position = player.position + transform.basis.z * current_distance

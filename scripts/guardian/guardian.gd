@@ -22,6 +22,7 @@ func move(delta):
 	direction = Vector3(movement.x, 0, movement.y).rotated(Vector3.UP, camera.rotation.y).normalized()
 
 	if is_on_floor():
+
 		if is_jumping:
 			is_jumping = false  # Reset jumping state after landing
 
