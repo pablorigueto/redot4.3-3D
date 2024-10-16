@@ -42,6 +42,8 @@ material = SubResource("ORMMaterial3D_uuocy")
 [node name="cam_gimbal" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.614602, 0.788837, 0, -0.788837, 0.614602, 0, 3.69766, 9.20618)
 script = ExtResource("2_wu5v2")
+mouse_sensitivity = null
+mouse_y_inversion = null
 
 [node name="Camera3D" type="Camera3D" parent="cam_gimbal"]
 unique_name_in_owner = true

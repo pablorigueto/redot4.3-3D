@@ -13,9 +13,9 @@ const CAMERA_RATIO: float = 0.625
 
 # Zoom parameters
 var zoom_speed: float = 0.1
-var min_distance: float = -1.0
-var max_distance: float = 10.0
-var current_distance: float = 5.0
+var min_distance: float = 5.0
+var max_distance: float = 12.0
+var current_distance: float = 8.0
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -26,10 +26,14 @@ func _process(delta: float) -> void:
 	position = target_position
 
 func _input(p_event: InputEvent) -> void:
-	if p_event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		#rotate_camera(p_event.relative)
-		#get_viewport().set_input_as_handled()
-		return
+	print(current_distance)
+	if current_distance <= 6.5:
+		if p_event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			rotate_camera(p_event.relative)
+			get_viewport().set_input_as_handled()
+			return
+	elif current_distance >= 6.6 and current_distance <= 7.0:
+		reset_camera()
 
 	if p_event is InputEventMouseButton:
 		# Handle mouse wheel input for zooming
@@ -37,6 +41,31 @@ func _input(p_event: InputEvent) -> void:
 			current_distance = clamp(current_distance - zoom_speed, min_distance, max_distance)
 		elif p_event.button_index == MOUSE_BUTTON_WHEEL_DOWN and p_event.pressed:
 			current_distance = clamp(current_distance + zoom_speed, min_distance, max_distance)
+
+func reset_camera() -> void:
+	# Get current rotations
+	var current_yaw = _camera_yaw.rotation.y
+	var current_pitch = _camera_pitch.rotation.x
+
+	# Set target rotations
+	var target_yaw = 0.0
+	var target_pitch = 0.0
+
+	# Duration for the transition
+	var duration = 1.0  # Adjust this for your desired speed
+	var frames = int(duration * 60)  # Assuming 60 FPS
+
+	# Smoothly transition to the target rotations over time
+	for t in range(frames + 1):  # Include the final value
+		var alpha = t / float(frames)  # Normalized time (0 to 1)
+		_camera_yaw.rotation.y = lerp(current_yaw, target_yaw, alpha)
+		_camera_pitch.rotation.x = lerp(current_pitch, target_pitch, alpha)
+
+		await get_tree().create_timer(1 / 60).timeout  # Wait for next frame
+
+	# Ensure final values are set
+	_camera_yaw.rotation.y = target_yaw
+	_camera_pitch.rotation.x = target_pitch
 
 func rotate_camera(p_relative: Vector2) -> void:
 	_camera_yaw.rotation.y -= p_relative.x * mouse_sensitivity
