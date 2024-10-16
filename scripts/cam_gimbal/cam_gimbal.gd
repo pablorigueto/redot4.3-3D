@@ -13,9 +13,9 @@ const CAMERA_RATIO: float = 0.625
 
 # Zoom parameters
 var zoom_speed: float = 0.1
-var min_distance: float = 1.0
-var max_distance: float = 5.0
-var current_distance: float = 1.0
+var min_distance: float = -1.0
+var max_distance: float = 10.0
+var current_distance: float = 5.0
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -27,8 +27,8 @@ func _process(delta: float) -> void:
 
 func _input(p_event: InputEvent) -> void:
 	if p_event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		rotate_camera(p_event.relative)
-		get_viewport().set_input_as_handled()
+		#rotate_camera(p_event.relative)
+		#get_viewport().set_input_as_handled()
 		return
 
 	if p_event is InputEventMouseButton:
