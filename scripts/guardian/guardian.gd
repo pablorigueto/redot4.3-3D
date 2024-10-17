@@ -129,35 +129,3 @@ func move(delta):
 
 	# Move the character
 	move_and_slide()
-
-
-# Detect mouse clicks to move the player
-# func _input(event):
-# 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-# 		var mouse_position = event.position
-
-# 		# Get the Camera3D from the Node3D
-# 		var camera_node = %Camera3D
-# 		if camera_node is Camera3D:
-# 			var ray_origin = camera_node.project_ray_origin(mouse_position)
-# 			var ray_direction = camera_node.project_ray_normal(mouse_position)
-
-# 			# Create RayCastParameters
-# 			var params = RayCastParameters.new()
-# 			params.from = ray_origin
-# 			params.to = ray_origin + ray_direction * 1000
-			
-# 			# Cast a ray to get the point on the ground
-# 			var space_state = get_world_3d().direct_space_state
-# 			var result = space_state.intersect_ray(params)
-
-# 			if result and result.has("position"):
-# 				target_direction = (result.position - global_transform.origin).normalized()
-# 			else:
-# 				target_direction = Vector3.ZERO
-
-
-# Using Godot 4.3 and GDScript I want to move my player when he clicked on the map,
-# I already have the move using "ui_left", "ui_right", "ui_up" and "ui_down", but now I want to move the player using the mouse cursor, PLEASE KEEP BOTH way to move the player.
-
-# my current code:

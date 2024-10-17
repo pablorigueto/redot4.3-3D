@@ -14,11 +14,12 @@ const CAMERA_RATIO: float = 0.625
 # Zoom parameters
 var zoom_speed: float = 0.1
 var min_distance: float = 5.0
-var max_distance: float = 12.0
+var max_distance: float = 15.0
 var current_distance: float = 8.0
 
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)  # Change to visible mode
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	_camera_yaw.rotation.y = 0
 	_camera_pitch.rotation.x = 0
 
@@ -30,35 +31,37 @@ func _process(delta: float) -> void:
 func _input(p_event: InputEvent) -> void:
 	print(current_distance)
 	if current_distance <= 6.5:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		if p_event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			rotate_camera(p_event.relative)
 			get_viewport().set_input_as_handled()
 			return
 	elif current_distance >= 6.6 and current_distance <= 7.0:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		reset_camera()
 
 	if p_event is InputEventMouseButton:
 		
-		if p_event.button_index == MOUSE_BUTTON_LEFT and p_event.pressed:
-			var mouse_pos = get_viewport().get_mouse_position()
-			var camera = %Camera3D
-
-			# Get the ray from the camera
-			var ray_origin = camera.project_ray_origin(mouse_pos)
-			var ray_direction = camera.project_ray_normal(mouse_pos)
-
-			# Create a PhysicsRayQueryParameters3D object
-			var ray_parameters = PhysicsRayQueryParameters3D.new()
-			ray_parameters.from = ray_origin
-			ray_parameters.to = ray_origin + ray_direction * 1000  # Adjust the distance as needed
-
-			# Perform the raycast
-			var space_state = get_world_3d().direct_space_state
-			var result = space_state.intersect_ray(ray_parameters)
-
-			if result:
-				print("Hit Position: ", result.position)  # Print the position where the ray hit an object
-				print("Hit Object: ", result.collider)    # Print the collider that was hit
+		#if p_event.button_index == MOUSE_BUTTON_LEFT and p_event.pressed:
+			#var mouse_pos = get_viewport().get_mouse_position()
+			#var camera = %Camera3D
+#
+			## Get the ray from the camera
+			#var ray_origin = camera.project_ray_origin(mouse_pos)
+			#var ray_direction = camera.project_ray_normal(mouse_pos)
+#
+			## Create a PhysicsRayQueryParameters3D object
+			#var ray_parameters = PhysicsRayQueryParameters3D.new()
+			#ray_parameters.from = ray_origin
+			#ray_parameters.to = ray_origin + ray_direction * 1000  # Adjust the distance as needed
+#
+			## Perform the raycast
+			#var space_state = get_world_3d().direct_space_state
+			#var result = space_state.intersect_ray(ray_parameters)
+#
+			#if result:
+				#print("Hit Position: ", result.position)  # Print the position where the ray hit an object
+				#print("Hit Object: ", result.collider)    # Print the collider that was hit
 
 
 		# Handle mouse wheel input for zooming
