@@ -44,12 +44,6 @@ func _input(p_event: InputEvent) -> void:
 		elif p_event.button_index == MOUSE_BUTTON_WHEEL_DOWN and p_event.pressed:
 			current_distance = clamp(current_distance + zoom_speed, min_distance, max_distance)
 
-	# Check for Ctrl + Enter to toggle fullscreen
-	if p_event is InputEventKey:
-		if p_event.pressed:  # Only check when the key is pressed
-			if p_event.key_code == Key.KEY_ENTER:
-				toggle_fullscreen()
-
 func reset_camera() -> void:
 	# Get current rotations
 	var current_yaw = _camera_yaw.rotation.y
@@ -81,12 +75,3 @@ func rotate_camera(p_relative: Vector2) -> void:
 
 	_camera_pitch.rotation.x += p_relative.y * mouse_sensitivity * CAMERA_RATIO * mouse_y_inversion 
 	_camera_pitch.rotation.x = clamp(_camera_pitch.rotation.x, CAMERA_MIN_PITCH, CAMERA_MAX_PITCH)
-
-func toggle_fullscreen() -> void:
-	var viewport = get_viewport()
-
-	if viewport.fullscreen:
-		viewport.fullscreen = false  # Exit fullscreen
-		viewport.borderless = false    # Optionally restore windowed mode
-	else:
-		viewport.fullscreen = true    # Enter fullscreen

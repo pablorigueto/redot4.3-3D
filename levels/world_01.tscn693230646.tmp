@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://cv2ugtv255tw5"]
+[gd_scene load_steps=8 format=3 uid="uid://cv2ugtv255tw5"]
 
-[ext_resource type="PackedScene" uid="uid://bc34xdhi60n4x" path="res://ui/UI.tscn" id="1_wu64i"]
 [ext_resource type="Script" path="res://scripts/cam_gimbal/cam_gimbal.gd" id="2_wu5v2"]
 [ext_resource type="PackedScene" uid="uid://dpvfeshkxjhtb" path="res://models/Guardian/Guardian.tscn" id="3_8lo8g"]
 
@@ -25,8 +24,6 @@ albedo_texture_msdf = true
 
 [node name="world_1" type="Node3D"]
 
-[node name="UI" parent="." instance=ExtResource("1_wu64i")]
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1ykjk")
 
@@ -45,6 +42,8 @@ material = SubResource("ORMMaterial3D_uuocy")
 [node name="cam_gimbal" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.614602, 0.788837, 0, -0.788837, 0.614602, 0, 3.69766, 9.20618)
 script = ExtResource("2_wu5v2")
+mouse_sensitivity = null
+mouse_y_inversion = null
 
 [node name="Camera3D" type="Camera3D" parent="cam_gimbal"]
 unique_name_in_owner = true
