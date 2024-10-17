@@ -9,7 +9,7 @@ func _process(p_delta) -> void:
 	%Label.text = "FPS: %s\n" % str(Engine.get_frames_per_second())
 	%Label.text += "Move Speed: %.1f\n" % player.MOVE_SPEED if player else ""
 	%Label.text += "Position: %.1v\n" % player.global_position if player else ""
-	%Label.text += "Move: WASD/Space/Shift/Mouse\n"
+	%Label.text += "Move: WASD/Space/Shift/Mouses\n"
 	%Label.text += "Move speed: Wheel,+/-\n"
 	#%Label.text += "Camera View: V\n"
 	#%Label.text += "Gravity toggle: G\n"
