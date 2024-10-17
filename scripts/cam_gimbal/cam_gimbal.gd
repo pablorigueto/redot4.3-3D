@@ -41,29 +41,6 @@ func _input(p_event: InputEvent) -> void:
 		reset_camera()
 
 	if p_event is InputEventMouseButton:
-		
-		#if p_event.button_index == MOUSE_BUTTON_LEFT and p_event.pressed:
-			#var mouse_pos = get_viewport().get_mouse_position()
-			#var camera = %Camera3D
-#
-			## Get the ray from the camera
-			#var ray_origin = camera.project_ray_origin(mouse_pos)
-			#var ray_direction = camera.project_ray_normal(mouse_pos)
-#
-			## Create a PhysicsRayQueryParameters3D object
-			#var ray_parameters = PhysicsRayQueryParameters3D.new()
-			#ray_parameters.from = ray_origin
-			#ray_parameters.to = ray_origin + ray_direction * 1000  # Adjust the distance as needed
-#
-			## Perform the raycast
-			#var space_state = get_world_3d().direct_space_state
-			#var result = space_state.intersect_ray(ray_parameters)
-#
-			#if result:
-				#print("Hit Position: ", result.position)  # Print the position where the ray hit an object
-				#print("Hit Object: ", result.collider)    # Print the collider that was hit
-
-
 		# Handle mouse wheel input for zooming
 		if p_event.button_index == MOUSE_BUTTON_WHEEL_UP and p_event.pressed:
 			current_distance = clamp(current_distance - zoom_speed, min_distance, max_distance)
