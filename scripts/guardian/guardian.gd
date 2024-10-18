@@ -80,13 +80,19 @@ var movement
 var direction
 var is_jumping = false
 var target_direction: Vector3 = Vector3.ZERO
+var is_moving: bool = false
+
+func get_is_moving() -> bool:
+	return is_moving
 
 func _physics_process(delta: float) -> void:
 	move(delta)
+	print('is_moving: ' + str(is_moving))
 
+	
 func move(delta):
 	movement = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	
+
 	# Calculate direction from keyboard input
 	var keyboard_direction = Vector3(movement.x, 0, movement.y).rotated(Vector3.UP, camera.rotation.y).normalized()
 	
@@ -102,6 +108,8 @@ func move(delta):
 
 		# Handle movement and play appropriate animations
 		if direction:
+			is_moving = true
+
 			# Check if the Shift key is pressed
 			if Input.is_action_pressed("ui_shift"):  # Ensure you set this action in the Input Map
 				anim.play("Run", -1, run_animation_speed)
@@ -114,6 +122,7 @@ func move(delta):
 
 			player_body.rotation.y = lerp_angle(player_body.rotation.y, atan2(velocity.x, velocity.z), delta * angular_speed)
 		else:
+			is_moving = false
 			anim.play("Idle Regular")
 			velocity.x = move_toward(velocity.x, 0, speed)
 			velocity.z = move_toward(velocity.z, 0, speed)
