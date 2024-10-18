@@ -75,7 +75,7 @@ func _physics_process(delta: float) -> void:
 
 	# Check the distance to the player
 	var distance_to_player = global_position.distance_to(player_body_2.global_position)
-	print(distance_to_player)
+	#print(distance_to_player)
 
 	# Get the player script
 	var player_script = player_body_2.get_script()
@@ -85,16 +85,16 @@ func _physics_process(delta: float) -> void:
 		var is_player_moving = player_body_2.get_is_moving()
 
 	if distance_to_player <= attack_range:
-		print('IF')
-		print(distance_to_player)
+		#print('IF')
+		#print(distance_to_player)
 		attackNPC()
 	#elif is_player_moving and (distance_to_player <= 5):
 		#print('ELIF')
 		#print(distance_to_player)
 		#attackNPC()
 	elif (!is_attack and distance_to_player > attack_range):
-		print('*********')
-		print(distance_to_player)
+		#print('*********')
+		#print(distance_to_player)
 		moveTowardPlayer(delta)
 
 func moveTowardPlayer(delta):
@@ -120,4 +120,9 @@ func attackNPC():
 	# Check if the attack animation is not currently playing
 	if not animation.is_playing(): # or animation.current_animation != "Standing Melee Attack Backhand":
 		animation.play("Standing Melee Attack Backhand", -1, run_animation_when_player_is_move)
+
+		if player_body_2.has_method("play_death_animation"):
+			print('tem o metodo')
+			player_body_2.play_death_animation()
+
 		is_attack = true

@@ -85,10 +85,15 @@ var is_moving: bool = false
 func get_is_moving() -> bool:
 	return is_moving
 
+# In Guardian script
+func play_death_animation() -> void:
+	print('chamando animacao')
+	anim.play("Sword and Shield Death")  # Play the death animation
+
 func _physics_process(delta: float) -> void:
 	move(delta)
 	#print('is_moving: ' + str(is_moving))
-	
+
 func move(delta):
 	movement = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
@@ -101,43 +106,48 @@ func move(delta):
 	else:
 		direction = keyboard_direction
 	
-	if is_on_floor():
-		if is_jumping:
-			is_jumping = false  # Reset jumping state after landing
+	if anim.current_animation != "Sword and Shield Death":
+#		if not anim.is_playing():
+	 #or anim.current_animation != "Sword and Shield Death":
 
-		# Handle movement and play appropriate animations
-		if direction:
-			is_moving = true
+		if is_on_floor():
+			if is_jumping:
+				is_jumping = false  # Reset jumping state after landing
 
-			# Check if the Shift key is pressed
-			if Input.is_action_pressed("ui_shift"):  # Ensure you set this action in the Input Map
-				anim.play("Run", -1, run_animation_speed)
-				velocity.x = direction.x * speed * 3  # Increase speed for running
-				velocity.z = direction.z * speed * 3
+			# Handle movement and play appropriate animations
+
+			if direction:
+				is_moving = true
+
+				# Check if the Shift key is pressed
+				if Input.is_action_pressed("ui_shift"):  # Ensure you set this action in the Input Map
+					anim.play("Run", -1, run_animation_speed)
+					velocity.x = direction.x * speed * 3  # Increase speed for running
+					velocity.z = direction.z * speed * 3
+				else:
+					is_moving = false
+					anim.play("Walk")
+					velocity.x = direction.x * speed
+					velocity.z = direction.z * speed
+
+				player_body.rotation.y = lerp_angle(player_body.rotation.y, atan2(velocity.x, velocity.z), delta * angular_speed)
 			else:
 				is_moving = false
-				anim.play("Walk")
-				velocity.x = direction.x * speed
-				velocity.z = direction.z * speed
+				anim.play("Idle Regular")
+				velocity.x = move_toward(velocity.x, 0, speed)
+				velocity.z = move_toward(velocity.z, 0, speed)
 
-			player_body.rotation.y = lerp_angle(player_body.rotation.y, atan2(velocity.x, velocity.z), delta * angular_speed)
-		else:
-			is_moving = false
-			anim.play("Idle Regular")
-			velocity.x = move_toward(velocity.x, 0, speed)
-			velocity.z = move_toward(velocity.z, 0, speed)
+		# Handle jumping
+		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+			is_jumping = true
+			velocity.y = jump_force
+			anim.play("Sword And Shield Jump")
 
-	# Handle jumping
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		is_jumping = true
-		velocity.y = jump_force
-		anim.play("Sword And Shield Jump")
+		# Apply gravity
+		velocity.y -= gravity * delta
 
-	# Apply gravity
-	velocity.y -= gravity * delta
-
-	# Move the character
-	move_and_slide()
+		# Move the character
+		move_and_slide()
 
 func _input(p_event: InputEvent) -> void:
 	if p_event is InputEventMouseButton:
