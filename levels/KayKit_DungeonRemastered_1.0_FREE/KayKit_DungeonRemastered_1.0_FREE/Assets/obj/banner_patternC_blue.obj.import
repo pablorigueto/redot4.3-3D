@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cmuqroc0d6fcp"
+path="res://.godot/imported/banner_patternC_blue.obj-c30fa238cdd42b8634948001232b2205.mesh"
+
+[deps]
+
+files=["res://.godot/imported/banner_patternC_blue.obj-c30fa238cdd42b8634948001232b2205.mesh"]
+
+source_file="res://levels/KayKit_DungeonRemastered_1.0_FREE/KayKit_DungeonRemastered_1.0_FREE/Assets/obj/banner_patternC_blue.obj"
+dest_files=["res://.godot/imported/banner_patternC_blue.obj-c30fa238cdd42b8634948001232b2205.mesh", "res://.godot/imported/banner_patternC_blue.obj-c30fa238cdd42b8634948001232b2205.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

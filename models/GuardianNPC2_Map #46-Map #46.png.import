@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://4q1ma1eunw77"
+path.s3tc="res://.godot/imported/GuardianNPC2_Map #46-Map #46.png-e2066b1f7af0c7d2077d432ac3c68485.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "6ba07a021913452fb32b997024fd191a"
+}
+
+[deps]
+
+source_file="res://models/GuardianNPC2_Map #46-Map #46.png"
+dest_files=["res://.godot/imported/GuardianNPC2_Map #46-Map #46.png-e2066b1f7af0c7d2077d432ac3c68485.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

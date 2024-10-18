@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 	position = target_position
 
 func _input(p_event: InputEvent) -> void:
-	print(current_distance)
+	#print(current_distance)
 	if current_distance <= 6.5:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		if p_event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
