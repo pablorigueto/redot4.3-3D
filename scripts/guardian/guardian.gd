@@ -87,8 +87,7 @@ func get_is_moving() -> bool:
 
 func _physics_process(delta: float) -> void:
 	move(delta)
-	print('is_moving: ' + str(is_moving))
-
+	#print('is_moving: ' + str(is_moving))
 	
 func move(delta):
 	movement = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -116,6 +115,7 @@ func move(delta):
 				velocity.x = direction.x * speed * 3  # Increase speed for running
 				velocity.z = direction.z * speed * 3
 			else:
+				is_moving = false
 				anim.play("Walk")
 				velocity.x = direction.x * speed
 				velocity.z = direction.z * speed
