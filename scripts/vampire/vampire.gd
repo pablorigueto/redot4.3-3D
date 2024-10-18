@@ -67,8 +67,6 @@ func _physics_process(delta: float) -> void:
 	
 	if animation.current_animation != "Standing Melee Attack Backhand":
 		is_attack = false
-		
-	print(is_attack)
 
 	var direction = (player_body_2.global_position - global_position).normalized()
 
