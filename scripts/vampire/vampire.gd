@@ -105,8 +105,8 @@ func moveTowardPlayer(delta):
 	var direction = (player_body_2.global_position - global_position).normalized()
 
 	# Set the NPC's velocity in the x and z directions
-	velocity.x = direction.x * speed * 3  # Increase speed for running
-	velocity.z = direction.z * speed * 3
+	velocity.x = direction.x * speed * 2.5  # Increase speed for running
+	velocity.z = direction.z * speed * 2.5
 
 	animation.play("Run", -1, run_animation_speed)
 
@@ -119,7 +119,8 @@ func moveTowardPlayer(delta):
 func attackNPC():
 	# Check if the attack animation is not currently playing
 	if not animation.is_playing(): # or animation.current_animation != "Standing Melee Attack Backhand":
-		animation.play("Standing Melee Attack Backhand", -1, run_animation_when_player_is_move)
+		if player_body_2.anim.current_animation != "Sword and Shield Death":
+			animation.play("Standing Melee Attack Backhand", -1, run_animation_when_player_is_move)
 
 		if player_body_2.has_method("play_death_animation"):
 			print('tem o metodo')
